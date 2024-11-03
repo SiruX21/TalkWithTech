@@ -9,10 +9,15 @@ lerna-debug.log*
 .pnpm-debug.log*
 /hacktx-backend/config.json
 /hacktx-backend-2/config.json
+/hacktx-backend-3/config.json
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 /hacktx-backend/chat_history.txt
 /hacktx-backend/combined_prompt.txt
+/hacktx-backend-2/chat_history.txt
+/hacktx-backend-2/combined_prompt.txt
+/hacktx-backend-3/chat_history.txt
+/hacktx-backend-3/combined_prompt.txt
 combined_prompt.txt
 chat_history.txt
 # Runtime data
