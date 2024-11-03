@@ -3,10 +3,14 @@ import './App.css';
 import marketImage from './assets/market.png';
 import interviewImage from './assets/interview.png';
 import classroomImage from './assets/classroom.png';
+import customerLogo from './assets/customer.png';
+import interviewLogo from './assets/interviewLogo.png';
+import teacherLogo from './assets/teacher.png';
 
 function App() {
   const games = ["Customer Simulator", "Interview Simulator", "Teacher Simulator"];
   const websites = ["https://customer.talkwith.tech", "https://interview.talkwith.tech", "https://teacher.talkwith.tech"];
+  const logos = [customerLogo, interviewLogo, teacherLogo];
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
 
   const changeGame = (direction) => {
@@ -36,7 +40,9 @@ function App() {
       <div className="arrow-box right" onClick={() => changeGame('right')}>
         &#8594;
       </div>
-      <div className="title-screen">{games[currentGameIndex]}</div>
+      <div className="title-screen">
+        <img src={logos[currentGameIndex]} alt={games[currentGameIndex]} className="game-logo" />
+      </div>
       <button className="select-game-button" onClick={handleSelectGame}>Select Game</button>
     </div>
   );
