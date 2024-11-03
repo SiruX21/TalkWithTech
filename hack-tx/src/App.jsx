@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
+import Popup from './Popup';
 
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [showPopup, setShowPopup] = useState(true);
+  const [difficulty, setDifficulty] = useState('normal');
   const chatHistoryRef = useRef(null);
 
   useEffect(() => {
@@ -36,8 +39,14 @@ function App() {
     }
   };
 
+  const handleStart = (selectedDifficulty) => {
+    setDifficulty(selectedDifficulty);
+    setShowPopup(false);
+  };
+
   return (
     <>
+      {showPopup && <Popup onStart={handleStart} />}
       <div className="chat-box">
         <div className="chat-history" ref={chatHistoryRef}>
           {messages.map((message, index) => (
