@@ -34,13 +34,16 @@ function App() {
       setAttempts(attempts + 1);
 
       try {
+        console.log('Sending message:', input);
         const response = await fetch(`https://api.talkwith.tech/game-one?input_text=${encodeURIComponent(input)}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           }
         });
+        console.log('Response status:', response.status);
         const data = await response.json();
+        console.log('Response data:', data);
         const aiMessage = { text: `Teacher said: ${data.response}`, isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
       } catch (error) {
