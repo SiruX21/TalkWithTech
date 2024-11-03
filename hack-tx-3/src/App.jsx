@@ -65,7 +65,7 @@ function App() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' }
         };
-        const res = await fetch(`https://api.talkwith.tech/game-one?input_text=${encodedPrompt}`, requestOptions);
+        const res = await fetch(`https://api3.talkwith.tech/game-one?input_text=${encodedPrompt}`, requestOptions);
         if (!res.ok) {
           throw new Error('Something went wrong');
         }
