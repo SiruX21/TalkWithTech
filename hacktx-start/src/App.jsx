@@ -58,9 +58,6 @@ function App() {
 
   useEffect(() => {
     document.body.style.backgroundImage = `url(${backgrounds[currentGameIndex]})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center';
-    document.body.style.backgroundRepeat = 'no-repeat';
   }, [currentGameIndex]);
 
   const handleSelectGame = () => {
@@ -68,16 +65,18 @@ function App() {
   };
 
   return (
-    <div id="root">
+    <>
       <div className="arrow-box left" onClick={() => changeGame('left')}>
         &#8592;
       </div>
       <div className="arrow-box right" onClick={() => changeGame('right')}>
         &#8594;
       </div>
-      <div className="title-screen">{games[currentGameIndex]}</div>
-      <button className="select-game-button" onClick={handleSelectGame}>Select Game</button>
-    </div>
+      <div className="content">
+        <div className="title-screen">{games[currentGameIndex]}</div>
+        <button className="select-game-button" onClick={handleSelectGame}>Select Game</button>
+      </div>
+    </>
   );
 }
 
