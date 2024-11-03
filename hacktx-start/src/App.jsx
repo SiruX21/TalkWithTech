@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const games = ["Karen Game", "Teacher Sim", "Interview Sim"];
+  const games = ["Customer Simulator", "Teacher Simulator", "Interview Simulator"];
   const websites = ["https://www.google.com", "https://www.yahoo.com", "https://www.bing.com"];
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
 
@@ -15,7 +15,7 @@ function App() {
   };
 
   useEffect(() => {
-    const colors = ['red', '#C65D3B', '#800000']; // Red, Burnt Orange, Maroon
+    const colors = ['#a577b5', '#C65D3B', '#800000']; // Red, Burnt Orange, Maroon
     document.body.style.backgroundColor = colors[currentGameIndex];
   }, [currentGameIndex]);
 
