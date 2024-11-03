@@ -100,13 +100,12 @@ function App() {
   return (
     
     <div className="app-container">
-      
-      {showPopup && <Popup onStart={handleStart} />}
-      <img 
+            <img 
         src={imageSrc}
         alt={`Customer mood: ${sentiment || 'calm'}`} 
         className="full-screen-image"
       />
+      {showPopup && <Popup onStart={handleStart} />}
       <div className="attempts-counter">
         Attempts: {attempts}/{maxAttempts[difficulty]}
       </div>
