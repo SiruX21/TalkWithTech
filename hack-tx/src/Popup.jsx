@@ -9,9 +9,6 @@ function Popup({ onStart, onClose }) {
   return (
     <div className="popup-overlay" role="dialog" aria-modal="true">
       <div className="popup-contents">
-        <button className="close-button" onClick={onClose} aria-label="Close popup">
-          &times;
-        </button>
         <h1>Welcome to TalkWith.Tech</h1>
         <p>
           TalkWith.Tech is an LLM-based interaction simulator designed to test your emotional intelligence. Follow the guidelines below to engage with the scenarios effectively:
