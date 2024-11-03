@@ -57,7 +57,7 @@ body {
 }
 
 .game-logo {
-  max-width: 630px; /* Reduced size */
-  max-height: 510px; /* Reduced size */
+  max-width: 930px; /* Reduced size */
+  max-height: 810px; /* Reduced size */
   object-fit: contain; /* Maintain aspect ratio */
 }
