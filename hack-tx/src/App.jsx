@@ -42,7 +42,7 @@ function App() {
         <div className="chat-history" ref={chatHistoryRef}>
           {messages.map((message, index) => (
             <div key={index} className={`chat-message ${message.isUser ? 'user-message' : 'ai-message'}`}>
-              {message.isUser ? 'You: ' : 'AI: '}{message.text}
+              {message.isUser ? 'You: ' : 'Teacher: '}{message.text}
             </div>
           ))}
         </div>
