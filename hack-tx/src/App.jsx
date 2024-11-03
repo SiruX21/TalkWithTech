@@ -45,9 +45,10 @@ const handleSendMessage = async () => {
       let finalAnswer = await res.text(); 
       finalAnswer = finalAnswer.trim().replace(/\n\s*\n/g, '\n\n');
       const sentimentMatch = finalAnswer.match(/Sentiment:\s*(\w+)/);
-      if (sentimentMatch) {
+      if (sentimentMatch) { //Sentiment gets picked up and set here, you can use this to determine the sprite
         setSentiment(sentimentMatch[1]);
         console.log('Extracted Sentiment:', sentimentMatch[1]);
+
       }
 
       const aiMessage = { text: `${finalAnswer}`, isUser: false };
