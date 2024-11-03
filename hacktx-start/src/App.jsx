@@ -41,9 +41,9 @@
 
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import marketImage from './market.png';
-import interviewImage from './interview.png';
-import classroomImage from './classroom.png';
+import marketImage from './src/assets/market.png';
+import interviewImage from './src/assets/interview.png';
+import classroomImage from './src/assets/classroom.png';
 
 function App() {
   const games = ["Customer Simulator", "Interview Simulator", "Teacher Simulator"];
