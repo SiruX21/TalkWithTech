@@ -3,6 +3,7 @@ import './App.css';
 
 function App() {
   const games = ["Karen Game", "Teacher Sim", "Interview Sim"];
+  const websites = ["https://www.google.com", "https://www.yahoo.com", "https://www.bing.com"];
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
 
   const changeGame = (direction) => {
@@ -14,10 +15,13 @@ function App() {
   };
 
   useEffect(() => {
-    // Array of background colors corresponding to each game
-    const colors = ['red', 'orange', 'brown'];
+    const colors = ['red', '#C65D3B', '#800000']; // Red, Burnt Orange, Maroon
     document.body.style.backgroundColor = colors[currentGameIndex];
   }, [currentGameIndex]);
+
+  const handleSelectGame = () => {
+    window.location.href = websites[currentGameIndex];
+  };
 
   return (
     <div id="root">
@@ -28,7 +32,7 @@ function App() {
         &#8594;
       </div>
       <div className="title-screen">{games[currentGameIndex]}</div>
-      <button className="select-game-button">Select Game</button>
+      <button className="select-game-button" onClick={handleSelectGame}>Select Game</button>
     </div>
   );
 }

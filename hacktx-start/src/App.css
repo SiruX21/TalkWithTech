@@ -8,7 +8,7 @@ body {
   padding: 2rem;
   text-align: center;
   position: relative;
-  color: white; /* Ensure text is visible on all background colors */
+  color: white;
 }
 
 .title-screen {
@@ -43,10 +43,10 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  border: 2px solid #fff; /* Changed to white for visibility */
+  border: 2px solid #fff;
   cursor: pointer;
   user-select: none;
-  color: white; /* Ensure arrows are visible on all backgrounds */
+  color: white;
 }
 
 .arrow-box.left {
