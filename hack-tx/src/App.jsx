@@ -50,7 +50,6 @@ function App() {
         }
 
         let finalAnswer = await res.text(); // Extract text directly
-        finalAnswer = applyMarkdownFormatting(finalAnswer);
         console.log('Response data:', finalAnswer);
         const aiMessage = { text: `${finalAnswer}`, isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
@@ -63,21 +62,6 @@ function App() {
       }
     }
   };
-  function applyMarkdownFormatting(text) {
-    // Example patterns for bold, italic, both, and new lines
-    const boldPattern = /\*\*(.*?)\*\*/g; // Matches **text**
-    const italicPattern = /\*(.*?)\*/g; // Matches *text*
-    const boldItalicPattern = /\*\*\*(.*?)\*\*\*/g; // Matches ***text***
-    const newlinePattern = /\\n/g; // Matches \n
-  
-    // Replace patterns with markdown syntax
-    text = text.replace(boldItalicPattern, '***$1***');
-    text = text.replace(boldPattern, '**$1**');
-    text = text.replace(italicPattern, '*$1*');
-    text = text.replace(newlinePattern, '\n');
-  
-    return text;
-  }
   
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -101,9 +85,9 @@ function App() {
         <div className="chat-history" ref={chatHistoryRef}>
           {messages.map((message, index) => (
             <div key={index} className={`chat-message ${message.isUser ? 'user-message' : 'ai-message'}`}>
-  {message.isUser ? 'You: ' : 'Customer:\n'}
-  {message.text}
-</div>
+              {message.isUser ? 'You: ' : 'Customer:\n'}
+              <ReactMarkdown>{message.text}</ReactMarkdown>
+            </div>
           ))}
         </div>
         <div className="input-container">
@@ -124,6 +108,7 @@ function App() {
         </div>
       </div>
     </div>
+    
   );
 }
 
