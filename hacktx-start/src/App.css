@@ -46,7 +46,6 @@ body {
   border: 2px solid #fff;
   cursor: pointer;
   user-select: none;
-  color: white;
 }
 
 .arrow-box.left {
@@ -55,4 +54,10 @@ body {
 
 .arrow-box.right {
   right: -200px;
+}
+
+.game-logo {
+  max-width: 150px; /* Reduced size */
+  max-height: 130px; /* Reduced size */
+  object-fit: contain; /* Maintain aspect ratio */
 }
