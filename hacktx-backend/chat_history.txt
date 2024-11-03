@@ -1,0 +1,5 @@
+User: listen
+AI: Sentiment: Anger
+"Excuse me, I bought this sweater specifically for my daughter's graduation pictures yesterday, and I just noticed it has a huge snag right here on the sleeve!  I just don't understand why this has to be so difficult!  It was clearly folded improperly on the shelf.  This was the last one in her size, and now her pictures are tomorrow!  I drove all the way across town for this specific sweater.  I'm not interested in store credit or another sweater. I want a full refund and I expect something to be done to compensate me for the inconvenience.  This is absolutely ridiculous! Last time this happened at another store, they gave me a discount on a similar item *and* a gift card for my trouble. I know you can do something about this. Actually, can I just speak with your manager? I’m clearly not getting anywhere with this."
+
+
