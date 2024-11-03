@@ -7,6 +7,7 @@ import sadnessImage from "./assets/emotions/Sadness.png";
 import happinessImage from "./assets/emotions/Happy.png";
 import calmImage from "./assets/emotions/calm.png";
 import background from './assets/background.png';
+
 const emotionImages = {
   anger: angerImage,
   sadness: sadnessImage,
@@ -24,6 +25,7 @@ function App() {
   const chatHistoryRef = useRef(null);
   const [sentiment, setSentiment] = useState('');
   const [imageSrc, setImageSrc] = useState(calmImage); // Set initial image to calm
+  const [showWinPopup, setShowWinPopup] = useState(false);
 
   const maxAttempts = {
     easy: 10,
@@ -38,13 +40,18 @@ function App() {
   useEffect(() => {
     if (sentiment) {
       setImageSrc(emotionImages[sentiment.toLowerCase()] || calmImage);
+      if (sentiment.toLowerCase() === 'happiness') {
+        setShowWinPopup(true);
+      }
     }
   }, [sentiment]);
+
   useEffect(() => {
     document.body.style.background = `url(${background}) center / cover no-repeat`;
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundPosition = 'center';
   }, []);
+
   const scrollToBottom = () => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
@@ -110,6 +117,11 @@ function App() {
         onError={(e) => console.error('Image load error:', e)}
       />
       {showPopup && <Popup onStart={handleStart} />}
+      {showWinPopup && (
+        <div className="win-popup">
+          <h2>Congratulations! You won the game!</h2>
+        </div>
+      )}
       <div className="attempts-counter">
         Attempts: {attempts}/{maxAttempts[difficulty]}
       </div>
@@ -137,7 +149,6 @@ function App() {
           >
             ↑
           </button>
-
         </div>
       </div>
     </div>
