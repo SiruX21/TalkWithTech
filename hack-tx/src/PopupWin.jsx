@@ -8,12 +8,10 @@ const PopupWin = () => {
       <div className="custom-popup-content">
         <h1 className="custom-popup-heading">You Won!!!</h1>
         <Confetti 
-          mode="boom" 
-          particleCount={500} 
+          mode="fall" 
+          particleCount={2000} 
           colors={['#ff577f', '#ff884b']} 
-          spreadDeg={900000} // Increase the spread angle
-          shapeSize={30} // Increase the size of the confetti particles
-          effectCount={5}
+          effectCount={100}
         />
       </div>
     </div>
