@@ -50,6 +50,7 @@ function App() {
         }
 
         let finalAnswer = await res.text(); // Extract text directly
+        finalAnswer = applyMarkdownFormatting(finalAnswer);
         console.log('Response data:', finalAnswer);
         const aiMessage = { text: `${finalAnswer}`, isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
@@ -62,7 +63,22 @@ function App() {
       }
     }
   };
-
+  function applyMarkdownFormatting(text) {
+    // Example patterns for bold, italic, both, and new lines
+    const boldPattern = /\*\*(.*?)\*\*/g; // Matches **text**
+    const italicPattern = /\*(.*?)\*/g; // Matches *text*
+    const boldItalicPattern = /\*\*\*(.*?)\*\*\*/g; // Matches ***text***
+    const newlinePattern = /\\n/g; // Matches \n
+  
+    // Replace patterns with markdown syntax
+    text = text.replace(boldItalicPattern, '***$1***');
+    text = text.replace(boldPattern, '**$1**');
+    text = text.replace(italicPattern, '*$1*');
+    text = text.replace(newlinePattern, '\n');
+  
+    return text;
+  }
+  
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
