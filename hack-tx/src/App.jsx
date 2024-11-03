@@ -8,6 +8,7 @@ function App() {
   const [showPopup, setShowPopup] = useState(true);
   const [difficulty, setDifficulty] = useState('normal');
   const [attempts, setAttempts] = useState(0);
+  const [loading, setLoading] = useState(false);
   const chatHistoryRef = useRef(null);
 
   const maxAttempts = {
@@ -34,22 +35,31 @@ function App() {
       setAttempts(attempts + 1);
 
       try {
+        setLoading(true);
         console.log('Sending message:', input);
-        const response = await fetch(`https://api.talkwith.tech/game-one?input_text=${encodeURIComponent(input)}`, {
+        const encodedPrompt = encodeURIComponent(input);
+        const requestOptions = {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        console.log('Response status:', response.status);
-        const data = await response.json();
-        console.log('Response data:', data);
-        const aiMessage = { text: `Teacher said: ${data.response}`, isUser: false };
+          headers: { 'Content-Type': 'application/json' }
+        };
+
+        const res = await fetch(`https://api.talkwith.tech/game-one?input_text=${encodedPrompt}`, requestOptions);
+
+        if (!res.ok) {
+          throw new Error('Something went wrong');
+        }
+
+        let finalAnswer = await res.text(); // Extract text directly
+        console.log('Response data:', finalAnswer);
+
+        const aiMessage = { text: `Teacher said: ${finalAnswer}`, isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
       } catch (error) {
         console.error('Error:', error);
         const aiMessage = { text: 'Teacher said: Sorry, something went wrong.', isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -86,12 +96,12 @@ function App() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type a message"
-            disabled={attempts >= maxAttempts[difficulty]}
+            disabled={attempts >= maxAttempts[difficulty] || loading}
           />
           <button 
             onClick={handleSendMessage} 
             className="send-button"
-            disabled={attempts >= maxAttempts[difficulty]}
+            disabled={attempts >= maxAttempts[difficulty] || loading}
           >
             ↑
           </button>
