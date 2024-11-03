@@ -23,7 +23,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const chatHistoryRef = useRef(null);
   const [sentiment, setSentiment] = useState('');
-  const [imageSrc, setImageSrc] = useState(happinessImage); // Set initial image to calm
+  const [imageSrc, setImageSrc] = useState(calmImage); // Set initial image to calm
 
   const maxAttempts = {
     easy: 10,
@@ -105,7 +105,7 @@ function App() {
     <div className="app-container">
       <img 
         src={imageSrc}
-        alt={`Customer mood: ${sentiment || 'happiness'}`} 
+        alt={`Customer mood: ${sentiment || 'calm'}`} 
         className="full-screen-image"
         onError={(e) => console.error('Image load error:', e)}
       />
