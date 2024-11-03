@@ -40,17 +40,11 @@ function App() {
       setImageSrc(emotionImages[sentiment.toLowerCase()] || calmImage);
     }
   }, [sentiment]);
-
   useEffect(() => {
-    console.log('Current image source:', imageSrc);
-  }, [imageSrc]);
-  const backgroundStyle = {
-    backgroundImage: `url(${background})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    height: '100vh',
-    width: '100vw'
-  };
+    document.body.style.background = `url(${backgroundImage}) center / cover no-repeat`;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center';
+  }, []);
   const scrollToBottom = () => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
@@ -109,9 +103,6 @@ function App() {
 
   return (
     <div className="app-container">
-                <div style={backgroundStyle}>
-      {/* Your content here */}
-    </div>
       <img 
         src={imageSrc}
         alt={`Customer mood: ${sentiment || 'calm'}`} 
