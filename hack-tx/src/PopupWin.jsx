@@ -9,9 +9,10 @@ const PopupWin = () => {
         <h1 className="custom-popup-heading">You Won!!!</h1>
         <Confetti 
           mode="fall" 
-          particleCount={2000} 
+          particleCount={5000} 
           colors={['#ff577f', '#ff884b']} 
-          effectCount={100}
+          effectCount={5}
+          shapeSize={30}
         />
       </div>
     </div>
