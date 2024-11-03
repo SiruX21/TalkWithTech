@@ -41,6 +41,11 @@ function App() {
     }
   }, [sentiment]);
 
+  useEffect(() => {
+    console.log('Current image source:', imageSrc);
+  }, [imageSrc]);
+
+
   const scrollToBottom = () => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
