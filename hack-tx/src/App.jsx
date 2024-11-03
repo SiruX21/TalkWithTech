@@ -3,6 +3,15 @@ import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Popup from './Popup';
 import ReactMarkdown from 'react-markdown';
+import angerImage from "/Anger.png";
+
+
+const emotionImages = {
+  anger: angerImage,
+  sadness: sadnessImage,
+  happiness: happinessImage,
+  calm: calmImage,
+};
 
 function App() {
   const [messages, setMessages] = useState([]);
