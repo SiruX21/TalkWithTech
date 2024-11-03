@@ -46,13 +46,6 @@ body {
   border: 2px solid #fff;
   cursor: pointer;
   user-select: none;
-  color: white;
-}
-
-.game-logo {
-  max-width: 300px;
-  max-height: 150px;
-  object-fit: contain;
 }
 
 .arrow-box.left {
@@ -61,4 +54,10 @@ body {
 
 .arrow-box.right {
   right: -200px;
+}
+
+.game-logo {
+  max-width: 200px; /* Reduced size */
+  max-height: 100px; /* Reduced size */
+  object-fit: contain; /* Maintain aspect ratio */
 }
