@@ -123,7 +123,15 @@ button.send-button {
   width: 100%;
   position: relative;
 }
-
+.full-screen-image {
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  object-fit: cover; /* Cover the entire area */
+  position: absolute; /* Position it absolutely */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  z-index: -1; /* Place it behind other content */
+}
 .attempts-counter {
   position: absolute;
   top: 20px;
