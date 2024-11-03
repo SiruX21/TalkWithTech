@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Popup from './Popup';
+import PopupWin from './PopupWin';
 import ReactMarkdown from 'react-markdown';
 import angerImage from "./assets/emotions/Anger.png";
 import sadnessImage from "./assets/emotions/Sadness.png";
@@ -24,7 +25,7 @@ function App() {
   const chatHistoryRef = useRef(null);
   const [sentiment, setSentiment] = useState('');
   const [imageSrc, setImageSrc] = useState(calmImage); // Set initial image to calm
-
+  const [showWinPopup, setShowWinPopup] = useState(false);
   const maxAttempts = {
     easy: 10,
     normal: 7,
@@ -100,6 +101,14 @@ function App() {
     setDifficulty(selectedDifficulty);
     setShowPopup(false);
   };
+  useEffect(() => {
+    if (sentiment) {
+      setImageSrc(emotionImages[sentiment.toLowerCase()] || calmImage);
+      if (sentiment.toLowerCase() === 'happiness') {
+        setShowWinPopup(true);
+      }
+    }
+  }, [sentiment]);
 
   return (
     <div className="app-container">
@@ -110,6 +119,7 @@ function App() {
         onError={(e) => console.error('Image load error:', e)}
       />
       {showPopup && <Popup onStart={handleStart} />}
+      {showWinPopup && <PopupWin />}
       <div className="attempts-counter">
         Attempts: {attempts}/{maxAttempts[difficulty]}
       </div>
