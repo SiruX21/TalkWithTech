@@ -119,11 +119,11 @@ button.send-button {
   position: relative;
 }
 .full-screen-image {
-  width: 50%; /* 50% of the original size */
+  width: 40%; /* 50% of the original size */
   height: auto; /* Maintain aspect ratio */
   position: fixed; /* Position it relative to the viewport */
-  top: 0%; /* Center vertically */
-  left: 20%; /* Center horizontally */
+  top: -5%; /* Center vertically */
+  left: 300%; /* Center horizontally */
   transform: translate(-50%, -50%); /* Adjust centering */
   z-index: 1000; /* Ensure it is above other content */
 }
