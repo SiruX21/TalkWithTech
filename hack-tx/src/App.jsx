@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Popup from './Popup';
+import ReactMarkdown from 'react-markdown';
 
 function App() {
   const [messages, setMessages] = useState([]);
