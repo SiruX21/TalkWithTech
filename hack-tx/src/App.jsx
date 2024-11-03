@@ -1,6 +1,6 @@
-import angerImage from './assets/emotions/anger.png';
-import sadnessImage from './assets/emotions/sadness.png';
-import happinessImage from './assets/emotions/happiness.png';
+import angerImage from './assets/emotions/Anger.png';
+import sadnessImage from './assets/emotions/Sadness.png';
+import happinessImage from './assets/emotions/Happiness.png';
 import calmImage from './assets/emotions/calm.png';
 
 const emotionImages = {
