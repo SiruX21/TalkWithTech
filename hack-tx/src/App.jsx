@@ -6,7 +6,7 @@ import angerImage from "./assets/emotions/Anger.png";
 import sadnessImage from "./assets/emotions/Sadness.png";
 import happinessImage from "./assets/emotions/Happy.png";
 import calmImage from "./assets/emotions/calm.png";
-
+import background from './assets/background.png';
 const emotionImages = {
   anger: angerImage,
   sadness: sadnessImage,
@@ -44,7 +44,13 @@ function App() {
   useEffect(() => {
     console.log('Current image source:', imageSrc);
   }, [imageSrc]);
-
+  const backgroundStyle = {
+    backgroundImage: `url(${background})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    height: '100vh',
+    width: '100vw'
+  };
   const scrollToBottom = () => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
@@ -137,6 +143,9 @@ function App() {
           >
             ↑
           </button>
+          <div style={backgroundStyle}>
+      {/* Your content here */}
+    </div>
         </div>
       </div>
     </div>
