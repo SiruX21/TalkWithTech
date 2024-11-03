@@ -1,9 +1,13 @@
+from flask import Flask, request, jsonify
 import google.generativeai as genai
 import os, settings
+
+app = Flask(__name__)
+
 genai.configure(api_key=settings.config['google_key'])
 model = genai.GenerativeModel('gemini-1.5-pro')
+
 # Define the base prompt
-# Define the new base prompt
 base_prompt = """
 Imagine you are a person named Karen, who is at a retail store and believes strongly in getting excellent customer service, particularly when things don’t go as expected. You often want things to go exactly as planned, and you’re not shy about speaking up. You feel very confident in asking for a manager if you feel that you’re not getting the assistance you deserve.
 
@@ -38,28 +42,29 @@ def generate_prompt(additional_text):
     
     return combined_prompt
 
-with open("chat_history.txt", "w") as file:
-    file.write("")
-# Open a file to save the chat history
-with open("chat_history.txt", "a") as file:
-    # Loop to keep the chat ongoing
-    while True:
-        additional_text = input("Enter the additional text for the prompt (or type 'exit' to quit): ")
-        if additional_text.lower() == 'exit':
-            break
-        combined_prompt = generate_prompt(additional_text)
+@app.route('/karen', methods=['POST'])
+def generate():
+    data = request.json
+    additional_text = data.get('additional_text', '')
+    
+    if not additional_text:
+        return jsonify({"error": "additional_text is required"}), 400
+    
+    combined_prompt = generate_prompt(additional_text)
 
-        # Generate content with the model using the combined prompt
-        # Assuming `model` is an instance of the AI model you're using
-        response = model.generate_content(combined_prompt)
+    # Generate content with the model using the combined prompt
+    response = model.generate_content(combined_prompt)
 
-        # Print the AI response
-        print(response.text)
-
-        # Save the user input and AI response to the file immediately
+    # Save the user input and AI response to the file immediately
+    with open("chat_history.txt", "a") as file:
         file.write(f"User: {additional_text}\n")
         file.write(f"AI: {response.text}\n\n")
-        
-        # Flush and sync the file to ensure it is saved
         file.flush()
         os.fsync(file.fileno())
+    
+    return jsonify({"response": response.text})
+
+if __name__ == '__main__':
+    with open("chat_history.txt", "w") as file:
+        file.write("")
+    app.run(debug=True)
