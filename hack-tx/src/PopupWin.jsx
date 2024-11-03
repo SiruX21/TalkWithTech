@@ -11,8 +11,8 @@ const PopupWin = () => {
           mode="boom" 
           particleCount={5000} 
           colors={['#ff577f', '#ff884b']} 
-          spreadDeg={90} // Increase the spread angle
-          shapeSize={20} // Increase the size of the confetti particles
+          spreadDeg={900} // Increase the spread angle
+          shapeSize={30} // Increase the size of the confetti particles
         />
       </div>
     </div>
