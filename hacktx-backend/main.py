@@ -44,6 +44,7 @@ def generate_prompt(additional_text):
 
 @app.route('/game-one', methods=['POST'])
 def generate():
+    print(input_text)
     input_text = request.args.get('input_text')
     combined_prompt = generate_prompt(input_text)
     response = model.generate_content(combined_prompt)
