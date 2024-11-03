@@ -44,6 +44,7 @@ def generate_prompt(additional_text):
 
 @app.route('/game-one', methods=['POST'])
 def generate():
+    print(input_text)
     input_text = request.args.get('input_text')
     combined_prompt = generate_prompt(input_text)
     response = model.generate_content(combined_prompt)
@@ -62,4 +63,4 @@ def status():
 if __name__ == '__main__':
     with open("chat_history.txt", "w") as file:
         file.write("")
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

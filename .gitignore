@@ -9,7 +9,8 @@ lerna-debug.log*
 /hacktx-backend/config.json
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-
+/hacktx-backend/chat_history.txt
+/hacktx-backend/combined_prompt.txt
 # Runtime data
 pids
 *.pid

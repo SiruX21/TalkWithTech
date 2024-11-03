@@ -6,7 +6,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     watch: {
-        usePolling: true
+      usePolling: true
+    },
+    host: '0.0.0.0' // Allow access from outside localhost
+  },
+  build: {
+    rollupOptions: {
+      input: 'index.html' // Specify the entry point
     }
-}
+  }
 })
