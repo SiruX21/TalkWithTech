@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Popup from './Popup';
+import PopupWin from './PopupWin';
 import ReactMarkdown from 'react-markdown';
 import angerImage from "./assets/emotions/Anger.png";
 import sadnessImage from "./assets/emotions/Sadness.png";
@@ -37,14 +38,6 @@ function App() {
     scrollToBottom();
   }, [messages]);
 
-  useEffect(() => {
-    if (sentiment) {
-      setImageSrc(emotionImages[sentiment.toLowerCase()] || calmImage);
-      if (sentiment.toLowerCase() === 'happiness') {
-        setShowWinPopup(true);
-      }
-    }
-  }, [sentiment]);
 
   useEffect(() => {
     document.body.style.background = `url(${background}) center / cover no-repeat`;
@@ -107,6 +100,14 @@ function App() {
     setDifficulty(selectedDifficulty);
     setShowPopup(false);
   };
+  useEffect(() => {
+    if (sentiment) {
+      setImageSrc(emotionImages[sentiment.toLowerCase()] || calmImage);
+      if (sentiment.toLowerCase() === 'happiness') {
+        setShowWinPopup(true);
+      }
+    }
+  }, [sentiment]);
 
   return (
     <div className="app-container">
@@ -117,11 +118,7 @@ function App() {
         onError={(e) => console.error('Image load error:', e)}
       />
       {showPopup && <Popup onStart={handleStart} />}
-      {showWinPopup && (
-        <div className="win-popup">
-          <h2>Congratulations! You won the game!</h2>
-        </div>
-      )}
+      {showWinPopup && <PopupWin />}
       <div className="attempts-counter">
         Attempts: {attempts}/{maxAttempts[difficulty]}
       </div>
