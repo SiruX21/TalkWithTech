@@ -4,7 +4,9 @@ import './App.css';
 import Popup from './Popup';
 import ReactMarkdown from 'react-markdown';
 import angerImage from "/Anger.png";
-
+import sadnessImage from "/Sadness.png";
+import happinessImage from "/Happiness.png";
+import calmImage from "/calm.png";
 
 const emotionImages = {
   anger: angerImage,
