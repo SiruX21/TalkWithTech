@@ -24,7 +24,7 @@ function App() {
   const chatHistoryRef = useRef(null);
   const [sentiment, setSentiment] = useState('');
   const [imageSrc, setImageSrc] = useState(calmImage); // Set initial image to calm
-
+  const [showWinPopup, setShowWinPopup] = useState(false);
   const maxAttempts = {
     easy: 10,
     normal: 7,
