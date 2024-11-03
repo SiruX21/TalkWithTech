@@ -51,12 +51,11 @@ function App() {
 
         let finalAnswer = await res.text(); // Extract text directly
         console.log('Response data:', finalAnswer);
-
-        const aiMessage = { text: `Teacher said: ${finalAnswer}`, isUser: false };
+        const aiMessage = { text: `${finalAnswer}`, isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
       } catch (error) {
         console.error('Error:', error);
-        const aiMessage = { text: 'Teacher said: Sorry, something went wrong.', isUser: false };
+        const aiMessage = { text: 'Customer has left the store.', isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
       } finally {
         setLoading(false);
@@ -86,7 +85,7 @@ function App() {
         <div className="chat-history" ref={chatHistoryRef}>
           {messages.map((message, index) => (
             <div key={index} className={`chat-message ${message.isUser ? 'user-message' : 'ai-message'}`}>
-              {message.isUser ? 'You: ' : 'Teacher: '}{message.text}
+              {message.isUser ? 'You: ' : 'Customer: '}{message.text}
             </div>
           ))}
         </div>

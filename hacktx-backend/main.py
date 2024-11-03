@@ -49,6 +49,7 @@ def generate():
     print(input_text)
     combined_prompt = generate_prompt(input_text)
     response = model.generate_content(combined_prompt)
+    print(response)
     with open("chat_history.txt", "a") as file:
         file.write(f"User: {input_text}\n")
         file.write(f"AI: {response.text}\n\n")
