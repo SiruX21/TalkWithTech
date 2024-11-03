@@ -41,7 +41,7 @@ function App() {
     }
   }, [sentiment]);
   useEffect(() => {
-    document.body.style.background = `url(${backgroundImage}) center / cover no-repeat`;
+    document.body.style.background = `url(${background}) center / cover no-repeat`;
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundPosition = 'center';
   }, []);
