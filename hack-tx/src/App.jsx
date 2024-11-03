@@ -109,6 +109,9 @@ function App() {
 
   return (
     <div className="app-container">
+                <div style={backgroundStyle}>
+      {/* Your content here */}
+    </div>
       <img 
         src={imageSrc}
         alt={`Customer mood: ${sentiment || 'calm'}`} 
@@ -143,9 +146,7 @@ function App() {
           >
             ↑
           </button>
-          <div style={backgroundStyle}>
-      {/* Your content here */}
-    </div>
+
         </div>
       </div>
     </div>
