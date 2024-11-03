@@ -1,0 +1,5 @@
+User: Hi! how are you doing?
+AI: Sentiment: Anger
+"Excuse me, I bought this sweater here yesterday, and when I washed it according to the label, it *completely* **shrank**!  I followed the instructions *exactly*, and now it's ruined. I ***cannot believe*** this happened! I want a full refund, and I don't want to hear about store credit. This sweater was expensive, and I expected better quality from this store.  I just don't understand why this has to be so difficult. Last time I had a problem like this at Bloomingdale's, they gave me a full refund *and* a discount on my next purchase.  I know you can do something about this. Actually, can I speak to a manager? I'm not getting anywhere with this."
+
+

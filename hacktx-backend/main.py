@@ -3,9 +3,9 @@ import google.generativeai as genai
 import os, settings
 
 app = Flask(__name__)
-
+version='gemini-1.5-pro'
 genai.configure(api_key=settings.config['google_key'])
-model = genai.GenerativeModel('gemini-1.5-pro')
+model = genai.GenerativeModel(version)
 
 # Define the base prompt
 base_prompt = """
@@ -22,7 +22,7 @@ Karen: “Hi, I bought this coffee maker last week, and it’s already not worki
 
 If the associate tries to explain store policy, feel free to escalate with, “Can I speak to a manager? I’m not getting anywhere with this.”
 At the start of the text, you will say Sentiment: (input sentiment here) The sentiments possible are Anger/Sadness/Happiness/Confused/Calm based on the reponse that you, the Karen, would give. Emulate the mood of the Karen and fit it into one of these sentiments. .
-Respond only in one paragraph with nothing else, with Sentiment: written in the first line, and the response in the second line.
+Respond only in one paragraph with nothing else, with Sentiment: written in the first line, and the response in the second line. Also try to Italicize and Bold things with emphases by adding * * for italization and ** ** for bolding and *** *** for both when you are truly angry.
 """
 
 # Function to add additional text to the base prompt
@@ -42,28 +42,23 @@ def generate_prompt(additional_text):
     
     return combined_prompt
 
-@app.route('/karen', methods=['POST'])
+@app.route('/game-one', methods=['POST'])
 def generate():
-    data = request.json
-    additional_text = data.get('additional_text', '')
-    
-    if not additional_text:
-        return jsonify({"error": "additional_text is required"}), 400
-    
-    combined_prompt = generate_prompt(additional_text)
-
-    # Generate content with the model using the combined prompt
+    input_text = request.args.get('input_text')
+    combined_prompt = generate_prompt(input_text)
     response = model.generate_content(combined_prompt)
-
-    # Save the user input and AI response to the file immediately
     with open("chat_history.txt", "a") as file:
-        file.write(f"User: {additional_text}\n")
+        file.write(f"User: {input_text}\n")
         file.write(f"AI: {response.text}\n\n")
         file.flush()
         os.fsync(file.fileno())
     
     return jsonify({"response": response.text})
-
+@app.route('/chat-one', methods=['GET'])
+def status():
+    with open("chat_history.txt", "w") as file:
+        file.write("")
+    return jsonify({"status": "Chat history cleared"})
 if __name__ == '__main__':
     with open("chat_history.txt", "w") as file:
         file.write("")
