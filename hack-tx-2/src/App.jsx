@@ -100,6 +100,14 @@ function App() {
     setDifficulty(selectedDifficulty);
     setShowPopup(false);
   };
+  useEffect(() => {
+    if (sentiment) {
+      setImageSrc(emotionImages[sentiment.toLowerCase()] || calmImage);
+      if (sentiment.toLowerCase() === 'happiness') {
+        setShowWinPopup(true);
+      }
+    }
+  }, [sentiment]);
 
   return (
     <div className="app-container">
@@ -110,6 +118,7 @@ function App() {
         onError={(e) => console.error('Image load error:', e)}
       />
       {showPopup && <Popup onStart={handleStart} />}
+      {showWinPopup && <PopupWin />}
       <div className="attempts-counter">
         Attempts: {attempts}/{maxAttempts[difficulty]}
       </div>
