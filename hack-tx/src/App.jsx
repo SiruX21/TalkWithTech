@@ -105,7 +105,7 @@ function App() {
     <div className="app-container">
       <img 
         src={imageSrc}
-        alt={`Customer mood: ${sentiment || 'calm'}`} 
+        alt={`Customer mood: ${sentiment || 'happiness'}`} 
         className="full-screen-image"
         onError={(e) => console.error('Image load error:', e)}
       />
