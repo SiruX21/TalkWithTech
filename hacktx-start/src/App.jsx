@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const games = ["Karen Game", "Teacher Sim", "Interview Sim"];
+  const [currentGameIndex, setCurrentGameIndex] = useState(0);
+
+  const changeGame = (direction) => {
+    if (direction === 'left') {
+      setCurrentGameIndex((prevIndex) => (prevIndex - 1 + games.length) % games.length);
+    } else {
+      setCurrentGameIndex((prevIndex) => (prevIndex + 1) % games.length);
+    }
+  };
+
+  useEffect(() => {
+    // Array of background colors corresponding to each game
+    const colors = ['red', 'orange', 'brown'];
+    document.body.style.backgroundColor = colors[currentGameIndex];
+  }, [currentGameIndex]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div id="root">
+      <div className="arrow-box left" onClick={() => changeGame('left')}>
+        &#8592;
       </div>
-      <h1>Vite + asdfads</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="arrow-box right" onClick={() => changeGame('right')}>
+        &#8594;
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <div className="title-screen">{games[currentGameIndex]}</div>
+      <button className="select-game-button">Select Game</button>
+    </div>
+  );
 }
 
-export default App
+export default App;

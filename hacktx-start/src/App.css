@@ -1,42 +1,58 @@
+body {
+  transition: background-color 0.5s ease;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  position: relative;
+  color: white; /* Ensure text is visible on all background colors */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.title-screen {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.select-game-button {
+  font-size: 1.5rem;
+  padding: 0.5em 1em;
+  border-radius: 25px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.select-game-button:hover {
+  background-color: #45a049;
 }
 
-.card {
-  padding: 2em;
+.arrow-box {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border: 2px solid #fff; /* Changed to white for visibility */
+  cursor: pointer;
+  user-select: none;
+  color: white; /* Ensure arrows are visible on all backgrounds */
 }
 
-.read-the-docs {
-  color: #888;
+.arrow-box.left {
+  left: -200px;
+}
+
+.arrow-box.right {
+  right: -200px;
 }
