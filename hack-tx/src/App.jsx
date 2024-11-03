@@ -45,7 +45,6 @@ function App() {
     console.log('Current image source:', imageSrc);
   }, [imageSrc]);
 
-
   const scrollToBottom = () => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
@@ -103,18 +102,17 @@ function App() {
   };
 
   return (
-    
     <div className="app-container">
-            <img 
+      <img 
         src={imageSrc}
         alt={`Customer mood: ${sentiment || 'calm'}`} 
         className="full-screen-image"
+        onError={(e) => console.error('Image load error:', e)}
       />
       {showPopup && <Popup onStart={handleStart} />}
       <div className="attempts-counter">
         Attempts: {attempts}/{maxAttempts[difficulty]}
       </div>
-
       <div className="chat-box">
         <div className="chat-history" ref={chatHistoryRef}>
           {messages.map((message, index) => (
