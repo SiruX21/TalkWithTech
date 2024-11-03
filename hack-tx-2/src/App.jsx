@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Popup from './Popup';
+import PopupWin from './PopupWin';
 import ReactMarkdown from 'react-markdown';
 import angerImage from "./assets/emotions/Anger.png";
 import sadnessImage from "./assets/emotions/Sadness.png";
@@ -25,7 +26,7 @@ function App() {
   const [sentiment, setSentiment] = useState('');
   const [imageSrc, setImageSrc] = useState(calmImage); // Set initial image to calm
   const [showWinPopup, setShowWinPopup] = useState(false);
-  
+
   const maxAttempts = {
     easy: 10,
     normal: 7,

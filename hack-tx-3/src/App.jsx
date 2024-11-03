@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Popup from './Popup';
+import PopupWin from './PopupWin';
 import ReactMarkdown from 'react-markdown';
 import angerImage from "./assets/emotions/Anger.png";
 import sadnessImage from "./assets/emotions/Sadness.png";
