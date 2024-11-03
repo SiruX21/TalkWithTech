@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Popup from './Popup';
 import ReactMarkdown from 'react-markdown';
-
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -17,76 +16,61 @@ function App() {
     normal: 7,
     hard: 4
   };
-
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
   const scrollToBottom = () => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
     }
   };
-
-  const handleSendMessage = async () => {
-    if (input.trim() && attempts < maxAttempts[difficulty]) {
-      const userMessage = { text: input, isUser: true };
-      setMessages([...messages, userMessage]);
-      setInput('');
-      setAttempts(attempts + 1);
-  
-      try {
-        setLoading(true);
-        console.log('Sending message:', input);
-        const encodedPrompt = encodeURIComponent(input);
-        const requestOptions = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' }
-        };
-  
-        const res = await fetch(`https://api.talkwith.tech/game-one?input_text=${encodedPrompt}`, requestOptions);
-  
-        if (!res.ok) {
-          throw new Error('Something went wrong');
-        }
-  
-        let finalAnswer = await res.text(); // Extract text directly
-        console.log('Response data:', finalAnswer);
-  
-        // Trim and replace multiple line breaks
-        finalAnswer = finalAnswer.trim().replace(/\n\s*\n/g, '\n\n');
-  
-        // Extract the word after "Sentiment:"
-        const sentimentMatch = finalAnswer.match(/Sentiment:\s*(\w+)/);
-        if (sentimentMatch) {
-          setSentiment(sentimentMatch[1]);
-          console.log('Extracted Sentiment:', sentimentMatch[1]); // Log the extracted sentiment to the console
-        }
-  
-        const aiMessage = { text: `${finalAnswer}`, isUser: false };
-        setMessages((prevMessages) => [...prevMessages, aiMessage]);
-      } catch (error) {
-        console.error('Error:', error);
-        const aiMessage = { text: 'Customer has left the store.', isUser: false };
-        setMessages((prevMessages) => [...prevMessages, aiMessage]);
-      } finally {
-        setLoading(false);
+const handleSendMessage = async () => {
+  if (input.trim() && attempts < maxAttempts[difficulty]) {
+    const userMessage = { text: input, isUser: true };
+    setMessages([...messages, userMessage]);
+    setInput('');
+    setAttempts(attempts + 1);
+    try {
+      setLoading(true);
+      console.log('Sending message:', input);
+      const encodedPrompt = encodeURIComponent(input);
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      };
+      const res = await fetch(`https://api.talkwith.tech/game-one?input_text=${encodedPrompt}`, requestOptions);
+      if (!res.ok) {
+        throw new Error('Something went wrong');
       }
+      let finalAnswer = await res.text(); 
+      finalAnswer = finalAnswer.trim().replace(/\n\s*\n/g, '\n\n');
+      const sentimentMatch = finalAnswer.match(/Sentiment:\s*(\w+)/);
+      if (sentimentMatch) {
+        setSentiment(sentimentMatch[1]);
+        console.log('Extracted Sentiment:', sentimentMatch[1]);
+      }
+
+      const aiMessage = { text: `${finalAnswer}`, isUser: false };
+      setMessages((prevMessages) => [...prevMessages, aiMessage]);
+    } catch (error) {
+      console.error('Error:', error);
+      const aiMessage = { text: 'Customer has left the store.', isUser: false };
+      setMessages((prevMessages) => [...prevMessages, aiMessage]);
+    } finally {
+      setLoading(false);
     }
-  };
-  
+  }
+};
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
   };
-
   const handleStart = (selectedDifficulty) => {
     setDifficulty(selectedDifficulty);
     setShowPopup(false);
   };
-
   return (
     <div className="app-container">
       {showPopup && <Popup onStart={handleStart} />}
