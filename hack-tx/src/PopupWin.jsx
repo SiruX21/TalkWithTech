@@ -7,7 +7,7 @@ const PopupWin = () => {
     <div className="custom-popup-overlay" role="dialog" aria-modal="true">
       <div className="custom-popup-content">
         <h1 className="custom-popup-heading">You Won!!!</h1>
-        <Confetti mode="boom" particleCount={50} colors={['#ff577f', '#ff884b']} />
+        <Confetti mode="boom" particleCount={5000} colors={['#ff577f', '#ff884b']} />
       </div>
     </div>
   );
