@@ -3,7 +3,7 @@ import google.generativeai as genai
 import os, settings
 from flask_cors import CORS  # Import the CORS library
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["https://customer.talkwith.tech/"]}})
+CORS(app, resources={r"/*": {"origins": "https://customer.talkwith.tech"}}) 
 version='gemini-1.5-pro'
 genai.configure(api_key=settings.config['google_key'])
 model = genai.GenerativeModel(version)
@@ -45,8 +45,8 @@ def generate_prompt(additional_text):
 
 @app.route('/game-one', methods=['POST'])
 def generate():
-    print(input_text)
     input_text = request.args.get('input_text')
+    print(input_text)
     combined_prompt = generate_prompt(input_text)
     response = model.generate_content(combined_prompt)
     with open("chat_history.txt", "a") as file:
