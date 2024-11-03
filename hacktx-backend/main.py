@@ -56,7 +56,7 @@ def generate():
         file.flush()
         os.fsync(file.fileno())
     
-    return jsonify({"response": response.text})
+    return (response.text)
 @app.route('/chat-one', methods=['GET'])
 def status():
     with open("chat_history.txt", "w") as file:
