@@ -132,41 +132,5 @@ const handleSendMessage = async () => {
     </div>
   );
 }
-//   return (
-//     <div className="app-container">
-//       {showPopup && <Popup onStart={handleStart} />}
-//       <div className="attempts-counter">
-//         Attempts: {attempts}/{maxAttempts[difficulty]}
-//       </div>
-//       <div className="chat-box">
-//         <div className="chat-history" ref={chatHistoryRef}>
-//           {messages.map((message, index) => (
-//             <div key={index} className={`chat-message ${message.isUser ? 'user-message' : 'ai-message'}`}>
-//               {message.isUser ? 'You: ' : 'Customer:\n'}
-//               <ReactMarkdown>{message.text}</ReactMarkdown>
-//             </div>
-//           ))}
-//         </div>
-//         <div className="input-container">
-//           <textarea
-//             value={input}
-//             onChange={(e) => setInput(e.target.value)}
-//             onKeyDown={handleKeyDown}
-//             placeholder="Type a message"
-//             disabled={attempts >= maxAttempts[difficulty] || loading}
-//           />
-//           <button 
-//             onClick={handleSendMessage} 
-//             className="send-button"
-//             disabled={attempts >= maxAttempts[difficulty] || loading}
-//           >
-//             ↑
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-    
-//   );
-// }
 
 export default App;
