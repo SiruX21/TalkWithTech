@@ -1,7 +1,7 @@
-import angerImage from "./assets/emotions/Anger.png";
-import sadnessImage from "./assets/emotions/Sadness.png";
-import happinessImage from "./assets/emotions/Happiness.png";
-import calmImage from "./assets/emotions/calm.png";
+import angerImage from "./assets/Anger.png";
+import sadnessImage from "./assets/Sadness.png";
+import happinessImage from "./assets/Happiness.png";
+import calmImage from "./assets/calm.png";
 
 const emotionImages = {
   anger: angerImage,
