@@ -1,7 +1,12 @@
-import angerImage from './assets/emotions/Anger.png';
-import sadnessImage from './assets/emotions/Sadness.png';
-import happinessImage from './assets/emotions/Happiness.png';
-import calmImage from './assets/emotions/calm.png';
+
+import { useState, useEffect, useRef } from 'react';
+import './App.css';
+import Popup from './Popup';
+import ReactMarkdown from 'react-markdown';
+import angerImage from "./assets/emotions/Anger.png";
+import sadnessImage from "./assets/emotions/Sadness.png";
+import happinessImage from "./assets/emotions/Happy.png";
+import calmImage from "./assets/emotions/calm.png";
 
 const emotionImages = {
   anger: angerImage,
@@ -9,11 +14,6 @@ const emotionImages = {
   happiness: happinessImage,
   calm: calmImage,
 };
-
-import { useState, useEffect, useRef } from 'react';
-import './App.css';
-import Popup from './Popup';
-import ReactMarkdown from 'react-markdown';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -100,7 +100,7 @@ const handleSendMessage = async () => {
         <img 
           src={emotionImages[sentiment.toLowerCase()] || emotionImages.calm}
           alt={`Customer mood: ${sentiment}`} 
-          className="mood-image"
+          className="full-screen-image"
         />
       )}
       <div className="chat-box">

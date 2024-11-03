@@ -16,11 +16,6 @@ body {
   height: 100vh;
 }
 
-.mood-image {
-  width: 200px; /* Adjust as needed */
-  height: auto;
-  margin-right: 20px; /* Space between image and chat box */
-}
 
 .chat-box {
   border: 1px solid var(--border-color);
@@ -123,7 +118,15 @@ button.send-button {
   width: 100%;
   position: relative;
 }
-
+.full-screen-image {
+  width: 40%; /* 50% of the original size */
+  height: auto; /* Maintain aspect ratio */
+  position: fixed; /* Position it relative to the viewport */
+  top: -5%; /* Center vertically */
+  left: 300%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust centering */
+  z-index: 1000; /* Ensure it is above other content */
+}
 .attempts-counter {
   position: absolute;
   top: 20px;
