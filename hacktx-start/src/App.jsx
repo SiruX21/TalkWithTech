@@ -6,7 +6,7 @@ import classroomImage from './assets/classroom.png';
 
 function App() {
   const games = ["Customer Simulator", "Interview Simulator", "Teacher Simulator"];
-  const websites = ["https://customer.talkwith.tech", "https://www.yahoo.com", "https://www.bing.com"];
+  const websites = ["https://customer.talkwith.tech", "https://interview.talkwith.tech", "https://teacher.talkwith.tech"];
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
 
   const changeGame = (direction) => {
