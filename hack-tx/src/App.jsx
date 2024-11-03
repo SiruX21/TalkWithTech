@@ -3,10 +3,10 @@ import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Popup from './Popup';
 import ReactMarkdown from 'react-markdown';
-import angerImage from "/Anger.png";
-import sadnessImage from "/Sadness.png";
-import happinessImage from "/Happiness.png";
-import calmImage from "/calm.png";
+import angerImage from "./assets/emotions/Anger.png";
+import sadnessImage from "./assets/emotions/Sadness.png";
+import happinessImage from "./assets/emotions/Happy.png";
+import calmImage from "./assets/emotions/calm.png";
 
 const emotionImages = {
   anger: angerImage,
