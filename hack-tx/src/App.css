@@ -16,11 +16,6 @@ body {
   height: 100vh;
 }
 
-.mood-image {
-  width: 200px; /* Adjust as needed */
-  height: auto;
-  margin-right: 20px; /* Space between image and chat box */
-}
 
 .chat-box {
   border: 1px solid var(--border-color);
@@ -130,7 +125,7 @@ button.send-button {
   position: absolute; /* Position it absolutely */
   top: 0; /* Align to the top */
   left: 0; /* Align to the left */
-  z-index: -1; /* Place it behind other content */
+  z-index: 0; /* Place it behind other content */
 }
 .attempts-counter {
   position: absolute;

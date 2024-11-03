@@ -100,7 +100,7 @@ const handleSendMessage = async () => {
         <img 
           src={emotionImages[sentiment.toLowerCase()] || emotionImages.calm}
           alt={`Customer mood: ${sentiment}`} 
-          className="mood-image full-screen-image"
+          className="full-screen-image"
         />
       )}
       <div className="chat-box">
