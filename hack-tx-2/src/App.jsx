@@ -81,7 +81,7 @@ function App() {
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
       } catch (error) {
         console.error('Error:', error);
-        const aiMessage = { text: 'Customer has left the store.', isUser: false };
+        const aiMessage = { text: 'Student has run away.', isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
       } finally {
         setLoading(false);
@@ -105,7 +105,7 @@ function App() {
     <div className="app-container">
       <img 
         src={imageSrc}
-        alt={`Customer mood: ${sentiment || 'calm'}`} 
+        alt={`Student mood: ${sentiment || 'calm'}`} 
         className="full-screen-image"
         onError={(e) => console.error('Image load error:', e)}
       />
@@ -117,7 +117,7 @@ function App() {
         <div className="chat-history" ref={chatHistoryRef}>
           {messages.map((message, index) => (
             <div key={index} className={`chat-message ${message.isUser ? 'user-message' : 'ai-message'}`}>
-              {message.isUser ? 'You: ' : 'Customer:\n'}
+              {message.isUser ? 'You: ' : 'Student:\n'}
               <ReactMarkdown>{message.text}</ReactMarkdown>
             </div>
           ))}
