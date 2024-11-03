@@ -26,17 +26,28 @@ function App() {
     }
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (input.trim() && attempts < maxAttempts[difficulty]) {
       const userMessage = { text: input, isUser: true };
       setMessages([...messages, userMessage]);
       setInput('');
       setAttempts(attempts + 1);
 
-      setTimeout(() => {
-        const aiMessage = { text: `You said "${input}"`, isUser: false };
+      try {
+        const response = await fetch(`https://api.talkwith.tech/game-one?input_text=${encodeURIComponent(input)}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await response.json();
+        const aiMessage = { text: `Teacher said: ${data.response}`, isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
-      }, 1000); // Delay for 1 second to simulate thinking time
+      } catch (error) {
+        console.error('Error:', error);
+        const aiMessage = { text: 'Teacher said: Sorry, something went wrong.', isUser: false };
+        setMessages((prevMessages) => [...prevMessages, aiMessage]);
+      }
     }
   };
 
