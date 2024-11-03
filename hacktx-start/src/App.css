@@ -1,9 +1,9 @@
-body {
+/* body {
   transition: background-color 0.5s ease;
 }
 
 #root {
-  max-width: 1281px; /* 1280px + 1px border */
+  max-width: 1281px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -55,4 +55,68 @@ body {
 
 .arrow-box.right {
   right: -200px;
+} */
+
+body {
+  transition: background-image 0.5s ease;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+#root {
+  max-width: 1281px; /* 1280px + 1px border */
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+}
+
+.title-screen {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.select-game-button {
+  font-size: 1.5rem;
+  padding: 0.5em 1em;
+  border-radius: 25px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.select-game-button:hover {
+  background-color: #45a049;
+}
+
+.arrow-box {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border: 2px solid #fff;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+}
+
+.arrow-box.left {
+  left: 20px;
+}
+
+.arrow-box.right {
+  right: 20px;
 }
