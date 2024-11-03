@@ -1,7 +1,20 @@
+import angerImage from './assets/emotions/anger.png';
+import sadnessImage from './assets/emotions/sadness.png';
+import happinessImage from './assets/emotions/happiness.png';
+import calmImage from './assets/emotions/calm.png';
+
+const emotionImages = {
+  anger: angerImage,
+  sadness: sadnessImage,
+  happiness: happinessImage,
+  calm: calmImage,
+};
+
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Popup from './Popup';
 import ReactMarkdown from 'react-markdown';
+
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -11,11 +24,15 @@ function App() {
   const [loading, setLoading] = useState(false);
   const chatHistoryRef = useRef(null);
   const [sentiment, setSentiment] = useState('');
+
+  
+  
   const maxAttempts = {
     easy: 10,
     normal: 7,
     hard: 4
   };
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
@@ -72,12 +89,20 @@ const handleSendMessage = async () => {
     setDifficulty(selectedDifficulty);
     setShowPopup(false);
   };
+
   return (
     <div className="app-container">
       {showPopup && <Popup onStart={handleStart} />}
       <div className="attempts-counter">
         Attempts: {attempts}/{maxAttempts[difficulty]}
       </div>
+      {sentiment && (
+        <img 
+          src={emotionImages[sentiment.toLowerCase()] || emotionImages.calm}
+          alt={`Customer mood: ${sentiment}`} 
+          className="mood-image"
+        />
+      )}
       <div className="chat-box">
         <div className="chat-history" ref={chatHistoryRef}>
           {messages.map((message, index) => (
@@ -105,8 +130,43 @@ const handleSendMessage = async () => {
         </div>
       </div>
     </div>
-    
   );
 }
+//   return (
+//     <div className="app-container">
+//       {showPopup && <Popup onStart={handleStart} />}
+//       <div className="attempts-counter">
+//         Attempts: {attempts}/{maxAttempts[difficulty]}
+//       </div>
+//       <div className="chat-box">
+//         <div className="chat-history" ref={chatHistoryRef}>
+//           {messages.map((message, index) => (
+//             <div key={index} className={`chat-message ${message.isUser ? 'user-message' : 'ai-message'}`}>
+//               {message.isUser ? 'You: ' : 'Customer:\n'}
+//               <ReactMarkdown>{message.text}</ReactMarkdown>
+//             </div>
+//           ))}
+//         </div>
+//         <div className="input-container">
+//           <textarea
+//             value={input}
+//             onChange={(e) => setInput(e.target.value)}
+//             onKeyDown={handleKeyDown}
+//             placeholder="Type a message"
+//             disabled={attempts >= maxAttempts[difficulty] || loading}
+//           />
+//           <button 
+//             onClick={handleSendMessage} 
+//             className="send-button"
+//             disabled={attempts >= maxAttempts[difficulty] || loading}
+//           >
+//             ↑
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+    
+//   );
+// }
 
 export default App;
