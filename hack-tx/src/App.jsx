@@ -11,7 +11,7 @@ function App() {
   const [attempts, setAttempts] = useState(0);
   const [loading, setLoading] = useState(false);
   const chatHistoryRef = useRef(null);
-
+  const [sentiment, setSentiment] = useState('');
   const maxAttempts = {
     easy: 10,
     normal: 7,
@@ -51,6 +51,11 @@ function App() {
         }
 
         let finalAnswer = await res.text(); // Extract text directly
+        const sentimentMatch = finalAnswer.match(/Sentiment:\s*(\w+)/);
+        if (sentimentMatch) {
+          setSentiment(sentimentMatch[1]);
+          console.log('Extracted Sentiment:', sentimentMatch[1])
+        }
         console.log('Response data:', finalAnswer);
         const aiMessage = { text: `${finalAnswer}`, isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
