@@ -34,7 +34,7 @@ function App() {
       setMessages([...messages, userMessage]);
       setInput('');
       setAttempts(attempts + 1);
-
+  
       try {
         setLoading(true);
         console.log('Sending message:', input);
@@ -43,20 +43,26 @@ function App() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' }
         };
-
+  
         const res = await fetch(`https://api.talkwith.tech/game-one?input_text=${encodedPrompt}`, requestOptions);
-
+  
         if (!res.ok) {
           throw new Error('Something went wrong');
         }
-
+  
         let finalAnswer = await res.text(); // Extract text directly
+        console.log('Response data:', finalAnswer);
+  
+        // Trim and replace multiple line breaks
+        finalAnswer = finalAnswer.trim().replace(/\n\s*\n/g, '\n\n');
+  
+        // Extract the word after "Sentiment:"
         const sentimentMatch = finalAnswer.match(/Sentiment:\s*(\w+)/);
         if (sentimentMatch) {
           setSentiment(sentimentMatch[1]);
-          console.log('Extracted Sentiment:', sentimentMatch[1])
+          console.log('Extracted Sentiment:', sentimentMatch[1]); // Log the extracted sentiment to the console
         }
-        console.log('Response data:', finalAnswer);
+  
         const aiMessage = { text: `${finalAnswer}`, isUser: false };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
       } catch (error) {
