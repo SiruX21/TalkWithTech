@@ -62,4 +62,4 @@ def status():
 if __name__ == '__main__':
     with open("chat_history.txt", "w") as file:
         file.write("")
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
