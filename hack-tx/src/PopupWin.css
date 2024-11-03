@@ -7,7 +7,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(153, 198, 240, 0.7); /* Semi-transparent background */
+    background-color: rgba(255, 200, 0, 0.7); /* Semi-transparent yellow-orange background */
     display: flex;
     align-items: center;
     justify-content: center;
