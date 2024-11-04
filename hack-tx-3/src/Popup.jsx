@@ -11,7 +11,7 @@ function Popup({ onStart, onClose }) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       };
-      const res = await fetch('https://api.talkwith.tech/chat-one', requestOptions);
+      const res = await fetch('https://api3.talkwith.tech/chat-three', requestOptions);
       const data = await res.json();
       console.log(data);
       onStart(difficulty);
