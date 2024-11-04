@@ -12,6 +12,9 @@ function Popup({ onStart, onClose }) {
         headers: { 'Content-Type': 'application/json' }
       };
       const res = await fetch('https://api3.talkwith.tech/chat-three', requestOptions);
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
       const data = await res.json();
       console.log(data);
       onStart(difficulty);
@@ -66,7 +69,7 @@ function Popup({ onStart, onClose }) {
           </select>
         </div>
 
-        <button className="start-button" onClick={() => onStart(difficulty)}>
+        <button className="start-button" onClick={handleStart}>
           Start
         </button>
       </div>
