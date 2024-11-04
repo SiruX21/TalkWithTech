@@ -11,7 +11,7 @@ function Popup({ onStart, onClose }) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       };
-      const res = await fetch('https://api2.talkwith.tech/chat-two', requtwoestOptions);
+      const res = await fetch('https://api2.talkwith.tech/chat-two', requestOptions);
       if (!res.ok) {
         throw new Error('Network response was not ok');
       }
