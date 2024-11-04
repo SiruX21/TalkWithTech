@@ -1,10 +1,24 @@
-// Popup.jsx
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Popup.css';
 
 function Popup({ onStart, onClose }) {
   const [difficulty, setDifficulty] = useState('normal');
+
+  const handleStart = async () => {
+    try {
+      const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      };
+      const res = await fetch('https://api.talkwith.tech/chat-one', requestOptions);
+      const data = await res.json();
+      console.log(data);
+      onStart(difficulty);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   return (
     <div className="popup-overlay" role="dialog" aria-modal="true">
