@@ -6,3 +6,4 @@ Goals:
 - Fixed UI with dynamic UI based on screen size
 - Possible mobile support
 - some cool shit idk
+- shoot myself
